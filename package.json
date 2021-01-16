@@ -5,8 +5,15 @@
   "main": "index.js",
   "scripts": {
     "build": "npx webpack --mode production",
+    "check": "npm test && npm run lint",
     "lint": "npx eslint --ext .js,.jsx,.ts,.tsx --fix src/",
     "test": "npx jest"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run check",
+      "pre-push": "npm run check"
+    }
   },
   "repository": {
     "type": "git",
@@ -32,6 +39,7 @@
     "eslint-config-prettier": "^7.1.0",
     "eslint-plugin-prettier": "^3.3.1",
     "html-webpack-plugin": "^4.5.1",
+    "husky": "^4.3.8",
     "jest": "^26.6.3",
     "prettier": "^2.2.1",
     "typescript": "^4.1.3",
