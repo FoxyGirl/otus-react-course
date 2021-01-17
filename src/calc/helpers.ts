@@ -1,6 +1,6 @@
-import { OPERATIONS } from "./constants";
+import { OPERATORS } from "./constants";
 
 export const isNumber = (item: string): boolean => !isNaN(Number(item));
 
-export const isValidOperation = (operation: string): boolean =>
-  OPERATIONS.includes(operation);
+export const isValidOperation = (operator: string): boolean =>
+  OPERATORS.includes(operator);
