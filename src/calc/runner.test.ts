@@ -1,28 +1,28 @@
-import { calculate } from "./runner";
+import { runner } from "./runner";
 
 describe("Calculate test cases", () => {
-  const arr1 = [1, "+", 2];
-  it(`${arr1} equals 3`, () => {
-    expect(calculate(arr1)).toBe(3);
+  const str1 = "1 + 2";
+  it(`${str1} equals 3`, () => {
+    expect(runner(str1)).toBe(3);
   });
 
-  const arr2 = [1, "+", 2, "+", 5];
-  it(`${arr2} equals 8`, () => {
-    expect(calculate(arr2)).toBe(8);
+  const str2 = "1 + 2 + 5";
+  it(`${str2} equals 8`, () => {
+    expect(runner(str2)).toBe(8);
   });
 
-  const arr3 = [5, "-", 2, "-", 4];
-  it(`${arr3} equals -1`, () => {
-    expect(calculate(arr3)).toBe(-1);
+  const str3 = "5 - 2 - 4";
+  it(`${str3} equals -1`, () => {
+    expect(runner(str3)).toBe(-1);
   });
 
-  // const arr4 = [1, "+", 2, "*", 5];
-  // it(`${arr4} equals 11`, () => {
-  //   expect(calculate(arr4)).toBe(11);
-  // });
+  const str4 = "1 + 2 * 5";
+  it(`${str4} equals 11`, () => {
+    expect(runner(str4)).toBe(11);
+  });
 
-  // const arr5 = [10, "-", 2, "*", 3];
-  // it(`${arr5} equals 4`, () => {
-  //   expect(calculate(arr5)).toBe(4);
-  // });
+  const str5 = "10 - 2 * 3";
+  it(`${str5} equals 4`, () => {
+    expect(runner(str5)).toBe(4);
+  });
 });

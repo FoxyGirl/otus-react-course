@@ -1,6 +1,6 @@
 import { mathOperations } from "./mathOperations";
 
-describe.only("Math operations test cases", () => {
+describe("Math operations test cases", () => {
   const add = "+";
   it(`1 ${add} 2 equals 3`, () => {
     expect(mathOperations[add](1, 2)).toBe(3);
