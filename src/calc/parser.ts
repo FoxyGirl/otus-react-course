@@ -1,7 +1,9 @@
 import { isNumber, isValidOperation } from "./helpers";
 import { ERROR_MESSAGE } from "./constants";
 
-export const parser = (input: string): (string | number)[] => {
+export type ParsedLineType = (string | number)[];
+
+export const parser = (input: string): ParsedLineType => {
   const inputArr = input.split(" ");
   const result = inputArr.map((item, index) => {
     if (index % 2 === 0) {

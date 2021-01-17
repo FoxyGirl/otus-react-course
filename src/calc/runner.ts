@@ -1,27 +1,25 @@
 import { mathOperations } from "./mathOperations";
-import { parser } from "./parser";
+import { parser, ParsedLineType } from "./parser";
 import { isNumber, isValidOperation } from "./helpers";
 
-export const calculate = (arr: (number | string)[]): number => {
-  const stack: (number | string)[] = [];
+export const calculate = (arr: ParsedLineType): number => {
+  const stack: ParsedLineType = arr.reduce(
+    (acc: ParsedLineType, el: string | number) => {
+      const prevEl = acc[acc.length - 1];
 
-  let i = 0;
-  while (i < arr.length) {
-    const el = arr[i];
+      if (isNumber(String(el)) && isValidOperation(String(prevEl))) {
+        return [
+          ...acc.slice(0, -2),
+          mathOperations[prevEl](Number(acc[acc.length - 2]), Number(el)),
+        ];
+      }
 
-    if (!isNumber(String(el)) && isValidOperation(String(el))) {
-      const el2 = arr[i + 1];
-      const el1 = stack.pop();
+      return [...acc, el];
+    },
+    []
+  );
 
-      stack.push(mathOperations[el](Number(el1), Number(el2)));
-      i += 2;
-    } else {
-      stack.push(el);
-      i += 1;
-    }
-  }
-
-  return Number(stack.pop());
+  return Number(stack[0]);
 };
 
 export const runner = (str: string): number => calculate(parser(str));
