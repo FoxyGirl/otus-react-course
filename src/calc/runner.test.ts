@@ -25,4 +25,9 @@ describe("Calculate test cases", () => {
   it(`${str5} equals 4`, () => {
     expect(runner(str5)).toBe(4);
   });
+
+  // const str6 = "10 - 2 * 3 + 5 !";
+  // it(`${str6} equals 4`, () => {
+  //   expect(runner(str6)).toBe(124);
+  // });
 });

@@ -1,4 +1,4 @@
-import { mathOperations } from "./mathOperations";
+import { mathOperations, unaryMathOperations } from "./mathOperations";
 
 describe("Math operations test cases", () => {
   const add = "+";
@@ -19,5 +19,32 @@ describe("Math operations test cases", () => {
   const divide = "/";
   it(`8 ${divide} 2 equals 4`, () => {
     expect(mathOperations[divide](8, 2)).toBe(4);
+  });
+
+  const factorial = "!";
+  it(`0 ${factorial} equals 1`, () => {
+    expect(unaryMathOperations[factorial](0)).toBe(1);
+  });
+
+  it(`5 ${factorial} equals 120`, () => {
+    expect(unaryMathOperations[factorial](5)).toBe(120);
+  });
+
+  const square = "**";
+  it(`2 ${square} equals 4`, () => {
+    expect(unaryMathOperations[square](2)).toBe(4);
+  });
+
+  it(`3 ${square} equals 9`, () => {
+    expect(unaryMathOperations[square](3)).toBe(9);
+  });
+
+  const power = "^";
+  it(`2 ${power} 3 equals 8`, () => {
+    expect(mathOperations[power](2, 3)).toBe(8);
+  });
+
+  it(`3 ${power} 3 equals 27`, () => {
+    expect(mathOperations[power](3, 3)).toBe(27);
   });
 });
