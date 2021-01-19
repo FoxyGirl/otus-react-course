@@ -26,8 +26,18 @@ describe("Calculate test cases", () => {
     expect(runner(str5)).toBe(4);
   });
 
-  // const str6 = "10 - 2 * 3 + 5 !";
-  // it(`${str6} equals 4`, () => {
-  //   expect(runner(str6)).toBe(124);
-  // });
+  const str6 = "10 - 2 * 3 + 5 !";
+  it(`${str6} equals 124`, () => {
+    expect(runner(str6)).toBe(124);
+  });
+
+  const str7 = "10 - 2 * 3 + 5 ! / 2 **";
+  it(`${str7} equals 34`, () => {
+    expect(runner(str7)).toBe(34);
+  });
+
+  const str8 = "10 - 2 * 3 + 5 ! / 2 ** - 3 ^ 3";
+  it(`${str8} equals 7`, () => {
+    expect(runner(str8)).toBe(7);
+  });
 });

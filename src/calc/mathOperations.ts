@@ -47,7 +47,7 @@ export const unaryMathOperations: {
 export const operatorPriority: { [key: string]: number } = {
   "!": PRIORITY.ZERO,
   "**": PRIORITY.ZERO,
-  "^": PRIORITY.ZERO,
+  "^": PRIORITY.FIRST,
   "*": PRIORITY.FIRST,
   "/": PRIORITY.FIRST,
   "+": PRIORITY.SECOND,
