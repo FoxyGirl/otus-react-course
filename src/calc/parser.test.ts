@@ -48,3 +48,32 @@ describe("Parser invalid cases", () => {
     expect(() => parser(str5)).toThrow(TypeError("Unexpected string"));
   });
 });
+
+describe("Parser with brackets correct cases", () => {
+  const str1 = "1 + ( 3 - 2 )";
+  it(str1, () => {
+    expect(parser(str1)).toEqual([1, "+", "(", 3, "-", 2, ")"]);
+  });
+
+  const str2 = "1 + ( 3 + 2 ** )";
+  it(str2, () => {
+    expect(parser(str2)).toEqual([1, "+", "(", 3, "+", 2, "**", ")"]);
+  });
+});
+
+describe("Parser with brackets invalid cases", () => {
+  const str1 = "1 + ) 3  - 2 (";
+  it(str1, () => {
+    expect(() => parser(str1)).toThrow(TypeError("Unexpected string"));
+  });
+
+  const str2 = "1 + ( ( 3 + 2 ** )";
+  it(str2, () => {
+    expect(() => parser(str2)).toThrow(TypeError("Unexpected string"));
+  });
+
+  const str3 = "1 + ( 3 + 2 ** ";
+  it(str3, () => {
+    expect(() => parser(str3)).toThrow(TypeError("Unexpected string"));
+  });
+});
