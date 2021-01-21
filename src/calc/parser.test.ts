@@ -59,6 +59,11 @@ describe("Parser with brackets correct cases", () => {
   it(str2, () => {
     expect(parser(str2)).toEqual([1, "+", "(", 3, "+", 2, "**", ")"]);
   });
+
+  const str3 = "( 1 + 2 ) * 5";
+  it(str3, () => {
+    expect(parser(str3)).toEqual(["(", 1, "+", 2, ")", "*", 5]);
+  });
 });
 
 describe("Parser with brackets invalid cases", () => {

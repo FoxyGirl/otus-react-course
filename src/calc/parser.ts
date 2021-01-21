@@ -10,12 +10,16 @@ const isCorrectNumber = (prevEl: string, el: string): boolean =>
     openBracket === prevEl);
 
 const isCorrectOperation = (prevEl: string, el: string): boolean =>
-  isValidOperation(el) && (isNumber(prevEl) || isValidUnaryOperation(prevEl));
+  isValidOperation(el) &&
+  (isNumber(prevEl) ||
+    isValidUnaryOperation(prevEl) ||
+    closeBracket === prevEl);
 
 const [openBracket, closeBracket] = Object.keys(BRACKETS);
 
 const isCorrectBrackets = (prevEl: string, el: string): boolean =>
-  (isValidOperation(prevEl) && openBracket === el) ||
+  ((isValidOperation(prevEl) || prevEl === "undefined") &&
+    openBracket === el) ||
   ((isNumber(prevEl) || isValidUnaryOperation(prevEl)) && closeBracket === el);
 
 export const parser = (input: string): ParsedLineType => {
