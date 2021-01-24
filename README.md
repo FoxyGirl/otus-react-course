@@ -14,7 +14,9 @@ Basic configuration for the project:
 Math calculator with basic arithmetic operations without eval
 
 `npm run calc`
+
 Then you can calc simple math operations
+
 Examples:
 
 ```
@@ -24,4 +26,21 @@ Result: 20
 Result: 180
 > 19 + -10
 Result: 9
+```
+
+Also you can calc math operations with priority and brackets
+
+"\*": multiply,
+"/": divide,
+"^": power,
+"!": factorial,
+"\*\*": square,
+
+Examples:
+
+```
+> (1 + 2) ^ (5 - 3 * 1)
+Result: 10
+> (1 + ((2 !) + 5) * 2) - (2 ** + 0 !)
+Result: 10
 ```
