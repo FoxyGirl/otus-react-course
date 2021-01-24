@@ -30,6 +30,10 @@ describe("Math operations test cases", () => {
     expect(unaryMathOperations[factorial](5)).toBe(120);
   });
 
+  it(`-2 ${factorial} equals -1`, () => {
+    expect(unaryMathOperations[factorial](-2)).toBe(NaN);
+  });
+
   const square = "**";
   it(`2 ${square} equals 4`, () => {
     expect(unaryMathOperations[square](2)).toBe(4);

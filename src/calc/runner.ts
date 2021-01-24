@@ -1,4 +1,9 @@
-import { OPEN_BRACKET, CLOSE_BRACKET, ERROR_BRACKETS } from "./constants";
+import {
+  OPEN_BRACKET,
+  CLOSE_BRACKET,
+  ERROR_BRACKETS,
+  ERROR_STACK,
+} from "./constants";
 
 import {
   mathOperations,
@@ -57,6 +62,10 @@ const calcFunctions = [
 const engine = (stack: ParsedLineType, i: number): number => {
   if (stack.length === 1) {
     return Number(stack[0]);
+  }
+
+  if (i > 2) {
+    throw new TypeError(ERROR_STACK);
   }
 
   return engine(calcFunctions[i](stack), i + 1);

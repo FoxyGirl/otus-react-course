@@ -9,7 +9,8 @@
     "check": "npm test && npm run lint",
     "lint": "npx eslint --ext .js,.jsx,.ts,.tsx --fix src/",
     "test": "npx jest",
-    "test-watch": "npx jest --watchAll"
+    "test:watch": "npx jest --watchAll",
+    "test:coverage": "jest --coverage"
   },
   "husky": {
     "hooks": {

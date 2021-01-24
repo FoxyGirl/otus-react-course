@@ -12,11 +12,13 @@ const divide: MathFunction = (a, b) => a / b;
 const power: MathFunction = (a, b) => Math.pow(a, b);
 
 const factorial: UnaryMathFunction = (num) => {
-  if (num < 0) return -1;
-  else if (num == 0) return 1;
-  else {
-    return num * factorial(num - 1);
+  if (num < 0) {
+    return NaN;
   }
+
+  if (num == 0) return 1;
+
+  return num * factorial(num - 1);
 };
 
 const square: UnaryMathFunction = (num) => num * num;

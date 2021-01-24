@@ -42,6 +42,13 @@ describe("Calculate test cases", () => {
   });
 });
 
+describe("Runner invalid cases", () => {
+  const str9 = "3 + -5 !";
+  it(`${str9}: factorial for negative real numbers causes "Unexpected stack"`, () => {
+    expect(() => runner(str9)).toThrow(TypeError("Unexpected stack"));
+  });
+});
+
 describe("Runner with brackets invalid cases", () => {
   const str1 = "1 + )3  - 2(";
   it(str1, () => {
@@ -81,8 +88,8 @@ describe("Calculate test cases with brackets", () => {
     expect(runner(str3)).toBe(11);
   });
 
-  const str4 = "(1 + ((2 !) + 5) * 2) - 2 **";
-  it(`${str4} equals 11`, () => {
-    expect(runner(str4)).toBe(11);
+  const str4 = "(1 + ((2 !) + 5) * 2) - (2 ** + 0 !)";
+  it(`${str4} equals 10`, () => {
+    expect(runner(str4)).toBe(10);
   });
 });
