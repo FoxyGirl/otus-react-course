@@ -41,3 +41,48 @@ describe("Calculate test cases", () => {
     expect(runner(str8)).toBe(7);
   });
 });
+
+describe("Runner with brackets invalid cases", () => {
+  const str1 = "1 + )3  - 2(";
+  it(str1, () => {
+    expect(() => runner(str1)).toThrow(
+      TypeError("Unexpected bracket sequence")
+    );
+  });
+
+  const str2 = "1 + ((3 + 2 **)";
+  it(str2, () => {
+    expect(() => runner(str2)).toThrow(
+      TypeError("Unexpected bracket sequence")
+    );
+  });
+
+  const str3 = "1 + (3 + 2 ** ";
+  it(str3, () => {
+    expect(() => runner(str3)).toThrow(
+      TypeError("Unexpected bracket sequence")
+    );
+  });
+});
+
+describe("Calculate test cases with brackets", () => {
+  const str1 = "(1 + 2) * 5";
+  it(`${str1} equals 15`, () => {
+    expect(runner(str1)).toBe(15);
+  });
+
+  const str2 = "(1 + 2) ^ (5 - 3 * 1)";
+  it(`${str2} equals 9`, () => {
+    expect(runner(str2)).toBe(9);
+  });
+
+  const str3 = "(1 + (2 + 5) * 2) - 2 **";
+  it(`${str3} equals 11`, () => {
+    expect(runner(str3)).toBe(11);
+  });
+
+  const str4 = "(1 + ((2 !) + 5) * 2) - 2 **";
+  it(`${str4} equals 11`, () => {
+    expect(runner(str4)).toBe(11);
+  });
+});
