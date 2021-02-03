@@ -29,5 +29,5 @@ export const isValidBrackets = (str: string): boolean => {
     }
   }
 
-  return bracketsChecker.length === 0 ? true : false;
+  return bracketsChecker.length === 0;
 };

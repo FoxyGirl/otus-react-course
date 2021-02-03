@@ -1,95 +1,42 @@
 import { runner } from "./runner";
 
 describe("Calculate test cases", () => {
-  const str1 = "1 + 2";
-  it(`${str1} equals 3`, () => {
-    expect(runner(str1)).toBe(3);
-  });
-
-  const str2 = "1 + 2 + 5";
-  it(`${str2} equals 8`, () => {
-    expect(runner(str2)).toBe(8);
-  });
-
-  const str3 = "5 - 2 - 4";
-  it(`${str3} equals -1`, () => {
-    expect(runner(str3)).toBe(-1);
-  });
-
-  const str4 = "1 + 2 * 5";
-  it(`${str4} equals 11`, () => {
-    expect(runner(str4)).toBe(11);
-  });
-
-  const str5 = "10 - 2 * 3";
-  it(`${str5} equals 4`, () => {
-    expect(runner(str5)).toBe(4);
-  });
-
-  const str6 = "10 - 2 * 3 + 5 !";
-  it(`${str6} equals 124`, () => {
-    expect(runner(str6)).toBe(124);
-  });
-
-  const str7 = "10 - 2 * 3 + 5 ! / 2 **";
-  it(`${str7} equals 34`, () => {
-    expect(runner(str7)).toBe(34);
-  });
-
-  const str8 = "10 - 2 * 3 + 5 ! / 2 ** - 3 ^ 3";
-  it(`${str8} equals 7`, () => {
-    expect(runner(str8)).toBe(7);
+  test.each([
+    ["1 + 2", 3],
+    ["1 + 2 + 5", 8],
+    ["5 - 2 - 4", -1],
+    ["1 + 2 * 5", 11],
+    ["10 - 2 * 3", 4],
+    ["10 - 2 * 3 + 5 !", 124],
+    ["10 - 2 * 3 + 5 ! / 2 **", 34],
+    ["10 - 2 * 3 + 5 ! / 2 ** - 3 ^ 3", 7],
+  ])("%s equals %i", (a, expected) => {
+    expect(runner(a)).toBe(expected);
   });
 });
 
 describe("Runner invalid cases", () => {
-  const str9 = "3 + -5 !";
-  it(`${str9}: factorial for negative real numbers causes "Unexpected stack"`, () => {
-    expect(() => runner(str9)).toThrow(TypeError("Unexpected stack"));
+  it(`3 + -5 !: factorial for negative real numbers causes "Unexpected stack"`, () => {
+    expect(() => runner("3 + -5 !")).toThrow(TypeError("Unexpected stack"));
   });
 });
 
 describe("Runner with brackets invalid cases", () => {
-  const str1 = "1 + )3  - 2(";
-  it(str1, () => {
-    expect(() => runner(str1)).toThrow(
-      TypeError("Unexpected bracket sequence")
-    );
-  });
-
-  const str2 = "1 + ((3 + 2 **)";
-  it(str2, () => {
-    expect(() => runner(str2)).toThrow(
-      TypeError("Unexpected bracket sequence")
-    );
-  });
-
-  const str3 = "1 + (3 + 2 ** ";
-  it(str3, () => {
-    expect(() => runner(str3)).toThrow(
-      TypeError("Unexpected bracket sequence")
-    );
-  });
+  test.each([["1 + )3  - 2("], ["1 + ((3 + 2 **)"], ["1 + (3 + 2 ** "]])(
+    '%s throws Error "Unexpected bracket sequence"',
+    (a) => {
+      expect(() => runner(a)).toThrow(TypeError("Unexpected bracket sequence"));
+    }
+  );
 });
 
 describe("Calculate test cases with brackets", () => {
-  const str1 = "(1 + 2) * 5";
-  it(`${str1} equals 15`, () => {
-    expect(runner(str1)).toBe(15);
-  });
-
-  const str2 = "(1 + 2) ^ (5 - 3 * 1)";
-  it(`${str2} equals 9`, () => {
-    expect(runner(str2)).toBe(9);
-  });
-
-  const str3 = "(1 + (2 + 5) * 2) - 2 **";
-  it(`${str3} equals 11`, () => {
-    expect(runner(str3)).toBe(11);
-  });
-
-  const str4 = "(1 + ((2 !) + 5) * 2) - (2 ** + 0 !)";
-  it(`${str4} equals 10`, () => {
-    expect(runner(str4)).toBe(10);
+  test.each([
+    ["(1 + 2) * 5", 15],
+    ["(1 + 2) ^ (5 - 3 * 1)", 9],
+    ["(1 + (2 + 5) * 2) - 2 **", 11],
+    ["(1 + ((2 !) + 5) * 2) - (2 ** + 0 !)", 10],
+  ])("%s equals %i", (a, expected) => {
+    expect(runner(a)).toBe(expected);
   });
 });
